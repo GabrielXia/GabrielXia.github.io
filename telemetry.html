@@ -103,7 +103,40 @@
 
                     <h2 class="section-heading">Bonding Period</h2>
 
+                    <p>
+                      I started Bonding Period with dockerizing the telemetry system.
+
+                    </br>
+                    </br>
+
+                      At first I found a snowplow-mini docker in dockerHub, I linked the snowplow-mini docker with logstash docker : <a href="https://github.com/GabrielXia/telemetry/tree/master/docker-coupled">telemetry-coupled</a>. After talking with my mentor @qwc, we thought that that docker is service oriented and could only be used for test.
+
+                    </br>
+                    </br>
+
+                      So then I started a more un-couped telemetry system: <a href="https://github.com/GabrielXia/telemetry">telemetry</a>. Since I'm not familar with docker and snowplow stacks, the setup takes more time than I expected.
+                    </p>
+
                     <h2 class="section-heading">Phrase 1</h2>
+
+                    <h3>Week 1</h3>
+                    <p>
+
+                    GSoC started! There are some issues left in the telemetry system, so I started the first week by fixing <a href="https://github.com/GabrielXia/telemetry/issues?q=is%3Aissue+is%3Aclosed">some issues</a>.
+
+                  </br>
+                  </br>
+
+                    Later in the week, I worked on documentation of the telemetry stack: <a href="https://github.com/GabrielXia/telemetry/wiki">wiki</a>. Then I started the work in Terasology codebase, I created a first telemetry event which tracked some basic info like os, video card, java version, etc. I tested it locally with telemetry system and mentors @skaldarnar @rzats helped me test, too.
+
+                  </br>
+                  </br>
+
+                   I implemented also a user authorisation popup when launching, PR: <a href="https://github.com/MovingBlocks/Terasology/pull/2968">#2968</a>. Reviewing is on process.
+
+                  </p>
+                  <img src="img/launch_popup.png">
+
 
                     <h2 class="section-heading">Phrase 2</h2>
 
