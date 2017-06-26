@@ -104,40 +104,122 @@
                     <h2 class="section-heading">Bonding Period</h2>
 
                     <p>
-                      I started Bonding Period with dockerizing the telemetry system.
+                      I started Bonding Period by dockerizing the telemetry system.
 
                     </br>
                     </br>
 
-                      At first I found a snowplow-mini docker in dockerHub, I linked the snowplow-mini docker with logstash docker : <a href="https://github.com/GabrielXia/telemetry/tree/master/docker-coupled">telemetry-coupled</a>. After talking with my mentor @qwc, we thought that that docker is service oriented and could only be used for test.
+                      At first I found a snowplow-mini docker in dockerHub, I linked the snowplow-mini docker with the logstash docker: <a href="https://github.com/GabrielXia/telemetry/tree/master/docker-coupled">telemetry-coupled</a>. After talking with my mentor @qwc, we thought that that docker is not service oriented and could only be used for test.
 
                     </br>
                     </br>
-
-                      So then I started a more un-couped telemetry system: <a href="https://github.com/GabrielXia/telemetry">telemetry</a>. Since I'm not familar with docker and snowplow stacks, the setup takes more time than I expected.
+                      So then I started a more un-couped telemetry system: <a href="https://github.com/GabrielXia/telemetry">telemetry</a>. Since I'm not familar with docker and snowplow stacks, the setup took more time than I expected.
                     </p>
 
                     <h2 class="section-heading">Phrase 1</h2>
 
-                    <h3>Week 1</h3>
+                    <h3>Week 1 (30/May ~ 5/June)</h3>
                     <p>
-
-                    GSoC started! There are some issues left in the telemetry system, so I started the first week by fixing <a href="https://github.com/GabrielXia/telemetry/issues?q=is%3Aissue+is%3Aclosed">some issues</a>.
-
+                    GSoC started! There are some issues left in the telemetry system, so I fixed <a href="https://github.com/GabrielXia/telemetry/issues/5">telemetry#5</a>, <a href="https://github.com/GabrielXia/telemetry/issues/7">telemetry#7</a>, <a href="https://github.com/GabrielXia/telemetry/issues/13">telemetry#8</a>, <a href="https://github.com/GabrielXia/telemetry/issues/9">telemetry#9</a> in the week.
                   </br>
                   </br>
 
-                    Later in the week, I worked on documentation of the telemetry stack: <a href="https://github.com/GabrielXia/telemetry/wiki">wiki</a>. Then I started the work in Terasology codebase, I created a first telemetry event which tracked some basic info like os, video card, java version, etc. I tested it locally with telemetry system and mentors @skaldarnar @rzats helped me test, too.
+                    Later in the week, I worked on documentation of the telemetry system: <a href="https://github.com/GabrielXia/telemetry/wiki">wiki</a>.
 
                   </br>
                   </br>
-
-                   I implemented also a user authorisation popup when launching, PR: <a href="https://github.com/MovingBlocks/Terasology/pull/2968">#2968</a>. Reviewing is on process.
-
+                    Then I worked on the Terasology codebase. I imported the snowplow tracker lib to track the metrics. The snowplow lib had a version conflict with 'jackson-core' in CrashReport. Problems resolved by excluding the 'jackson-core' package in CrashReporter: <a href="https://github.com/MovingBlocks/CrashReporter/pull/39">CR#39</a>. Then I created a first telemetry event which tracked some basic infos like os, video card, java version, etc. The PR corresponded is <a href="https://github.com/MovingBlocks/Terasology/pull/2968">Terasology#2968</a>. I tested it locally with telemetry system and mentors @skaldarnar @rzats helped me test. Here is what it looked like in server:
+                  </br>
+                </br>
+                    <img src="img/telemetry/system_context.png"/>
                   </p>
-                  <img src="img/launch_popup.png">
+                  <!-- end of week 1 -->
+
+                  <!-- start of week2 -->
+                  <h3>Week 2 (6/June ~ 12/June)</h3>
+                  <p>
+                  In week 2, following the work of week 1, I implemented the user's authorization.
+                </br>
+              </br>
+
+                  The user's authorization is implemented by adding two config types in `Config.class` instance in game context: `TelemetryConfig` (Enable telemetry or not) and `LaunchPopupConfig` (whether the user wants to see the popup when launching the game).
+
+                  </br>
+                  </br>
+
+                  Together with the user authorization, I implemented a `LaunchPopup` which will pop up during game launching, tell user what telemetry does and ask for user's permission. With the help of @Cervate and @skaldarnar, we added a buttom which will link to the `Metrics Menu` (will be implemented in furture). Here is update in PR: <a href="https://github.com/MovingBlocks/Terasology/pull/2968#issuecomment-306286883">update week 2</a> is the update in PR. The popup looked as follow:
+                </br>
+              </br>
+                  <img src="img/telemetry/launch.png" />
+
+                </p>
+                <!-- end of week 2 -->
+
+                <!-- start of week3 -->
+                <h3>Week 3 (13/June ~ 19/June)</h3>
+                <p>
+                In week 3, I fixed two bugs in the docker server: <a href="https://github.com/GabrielXia/telemetry/issues/10">telemetry#10</a> and <a href="https://github.com/GabrielXia/telemetry/issues/11">telemetry#11</a>
+              </br>
+            </br>
+                Quite a few work is done in the Terasology code:
+              </br>
+            </br>
+                A `TelemetrySubSystem` engine system initializes all the telemetry stuffs, and then injects the `emitter` and the `metrics` to game context so that the other classes can use them for telemetry.
+              </br>
+            </br>
+                Similar to the `Config.class`, the `Metrics.class` stores all the metric instance in the environment. It'll be used to show to the users what we tracker. In the future, it'll be used if we want to store some user's statistics in files. E.g. If we want to count the total number of boxes distroyed and we might need to store the number of boxes every time game shuts down.
+
+            </br>
+          </br>
+                The abstract `Metric.class` is a class to extend for every new `Metric` class. A new `Metric` class should also be annotitated by `@TelemetryCategory`. Every field being tracked should be marked as `@TelemetryField`.
+
+            </br>
+          </br>
+                The `TelemetryScreen` shows to users the field names and field values that we track. Users can enable and disable the telemetry via the check boxes in the menu. It finds these telemetry metrics automatically by the annotation `@TelemetryCategory`. So if a new metric extends the abstract `metric.class` and all the telemetry fields marked as `@TelemetryField`, their names and values will be showed automatically. Thanks @onitas for reviewing the PR.
 
 
+                </br>
+                </br>
+
+                Here is the update in PR: <a href="https://github.com/MovingBlocks/Terasology/pull/2968#issuecomment-308883662">update week 3</a>, and the `Metrics Menu` looked like this:
+              </br>
+            </br>
+              <img src="img/telemetry/metrics_screen_system.png" />
+              </p>
+              <!-- end of week 3 -->
+
+
+              <!-- start of week4 -->
+              <h3>Week 4 (20/June ~ 26/June)</h3>
+              <p>
+                 In the week 4, I worked on the error reporting. The error reporting system will enrich the error logs and send them to the server.
+              </br>
+              </br>
+                 A new configuration in the logstash server to descode the json logs: <a href="https://github.com/GabrielXia/telemetry/issues/13">telemetry#13</a>
+
+              </br>
+              </br>
+                 I used <a href="https://github.com/logstash/logstash-logback-encoder">logstash-logback-encoder</a> library. I implemented a `TelemetryLogstashAppender` based on the `LogstashTcpSocketAppender`. It has a `gameContext` field and it could be enabled or disabled via its methods.
+
+              </br>
+            </br>
+                Two json providers `SystemContextJsonProvider` and `ModulesJsonprovider` enriches the error logs with system information and module information. Also I added a new metric `ModulesMetric` to track the module information in game.
+              <br>
+            </br>
+                To turn on/off the error reporting, the user can go to the Metrics Menu and clicks the check box to enable/disable it. It's implemented via a listener on the check box and the filters in the logback appender. Thanks @Cervator for reviewing the code.
+
+              </br>
+              </br>
+                Here is the update in the PR: <a href="https://github.com/MovingBlocks/Terasology/pull/2968#issuecomment-310870209"> update week4</a>. The error logs received during launching a game looked like this:
+
+                <img src="img/telemetry/error_loading_game.png"/>
+              </br>
+              The informations of a log received:
+              <img src="img/telemetry/logback_appender1.png" />
+              <img src="img/telemetry/logback_appender2.png"  />
+              </br>
+              </p>
+              <!-- end of week 3 -->
                     <h2 class="section-heading">Phrase 2</h2>
 
                     <h2 class="section-heading">Phrase 3</h2>
