@@ -219,8 +219,65 @@
               <img src="img/telemetry/logback_appender2.png"  />
               </br>
               </p>
-              <!-- end of week 3 -->
+              <!-- end of week 4 -->
                     <h2 class="section-heading">Phrase 2</h2>
+
+                    <!-- start of week5 -->
+                    <h3>Week 5 (27/June ~ 4/July)</h3>
+                    <p>
+                       The PR of the period 1 became large. Mentors helped me review the code and there are several problems. In the week 5 I worked on the PR to help it merged in Terasology.
+                    </br>
+                    </br>
+                       Since the telemetry code is not ready for use. To help it merged, I turned off all the telemetry stuffs including snowplow tracker and error reporting default to `OFF`. There two `checkbox`s in the `Metrics Menu` on which the user can turn on the telemetry. A `ServerPopop` would appear asking for the server infomation such as address, port, etc.
+
+                    </br>
+                    </br>
+                       Here is the update in PR: <a href="https://github.com/MovingBlocks/Terasology/pull/2968#issuecomment-312094054">update week5</a>. The `ServerPopup` looks as below:
+                      <img src="img/telemetry/serverPopup.png"/>
+                    </p>
+                    <!-- end of week 5 -->
+
+                    <!-- start of week6 -->
+                    <h3>Week 6 (5/July ~ 12/July)</h3>
+                    <p>
+                      At the beginning of week 6, I fixed an `Tracker unclosed` issue in snowplow-tracker lib which would be adopted by organisation snowplow: <a href="https://github.com/snowplow/snowplow-java-tracker/pull/189">snowplow-java-tracker#189</a>.
+
+                    </br>
+                    </br>
+                      MovingBlocks org provided me with a server for the telemetry. The graphic interface Kibana is available on site: <a href="http://utility.terasology.org:5601/">Kibana</a>
+                    </br>
+                    </br>
+                       In week 6, I also started to work on "game play telemetry" which recorded metrics such as block destroyed in game. A first attampt here in <a href="https://github.com/MovingBlocks/Terasology/pull/3016/commits/2f6776c1b324cd176e41ef7bb87ef7014f474b77">first commit</a> was to track player configuration such as network mode, language, player height in game, etc. Then with user's permission, these information will be sent to the telemetry server.
+                      <img src="img/telemetry/gameConfiguration.png"/>
+                    </p>
+                    <!-- end of week 6 -->
+
+                    <!-- start of week7 -->
+                    <h3>Week 7 (13/July ~ 20/July)</h3>
+                    <p>
+                      In the week 7, I continued to work on "game play telemetry". The metrics includes blocks destroyed, blocks placed, monsters killed, game configuration, and game play statistics such as distance traveled, play time. These metrics could not only used for telemetry but also used to visualise the game play stats in mefor fun. Since all these game play stats stored in the player entity, it could help to develpe a game play achivement system to all the stats of all the players in a multiplayer game.
+                    </br>
+                    </br>
+                      The PR corresponded is <a href="https://github.com/MovingBlocks/Terasology/pull/3016">here</a>. And you can see those game play stats show as below:
+
+                      <img src="img/telemetry/blockDestroyed.png"/>
+                      <img src="img/telemetry/gameplay.png"/>
+                    </p>
+                    <!-- end of week 7 -->
+
+                    <!-- start of week7 -->
+                    <h3>Week 8 (21/July ~ 28/July)</h3>
+                    <p>
+                      In the week 8, I fin
+                    </br>
+                    </br>
+                      The PR corresponded is <a href="https://github.com/MovingBlocks/Terasology/pull/3016">here</a>. And you can see those game play stats show as below:
+
+                      <img src="img/telemetry/blockDestroyed.png"/>
+                      <img src="img/telemetry/gameplay.png"/>
+                    </p>
+                    <!-- end of week 7 -->
+
 
                     <h2 class="section-heading">Phrase 3</h2>
 
