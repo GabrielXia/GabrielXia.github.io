@@ -238,7 +238,7 @@
                     <!-- end of week 5 -->
 
                     <!-- start of week6 -->
-                    <h3>Week 6 (5/July ~ 12/July)</h3>
+                    <h3>Week 6 (5/July ~ 11/July)</h3>
                     <p>
                       At the beginning of week 6, I fixed an `Tracker unclosed` issue in snowplow-tracker lib which would be adopted by organisation snowplow: <a href="https://github.com/snowplow/snowplow-java-tracker/pull/189">snowplow-java-tracker#189</a>.
 
@@ -253,7 +253,7 @@
                     <!-- end of week 6 -->
 
                     <!-- start of week7 -->
-                    <h3>Week 7 (13/July ~ 20/July)</h3>
+                    <h3>Week 7 (12/July ~ 18/July)</h3>
                     <p>
                       In the week 7, I continued to work on "game play telemetry". The metrics includes blocks destroyed, blocks placed, monsters killed, game configuration, and game play statistics such as distance traveled, play time. These metrics could not only used for telemetry but also used to visualise the game play stats in mefor fun. Since all these game play stats stored in the player entity, it could help to develpe a game play achivement system to all the stats of all the players in a multiplayer game.
                     </br>
@@ -265,21 +265,67 @@
                     </p>
                     <!-- end of week 7 -->
 
-                    <!-- start of week7 -->
-                    <h3>Week 8 (21/July ~ 28/July)</h3>
+                    <!-- start of week8 -->
+                    <h3>Week 8 (19/July ~ 25/July)</h3>
                     <p>
-                      In the week 8, I fin
+                      In the week 8, I polished <a href="https://github.com/MovingBlocks/Terasology/pull/3016">the PR of game playtelemetry</a> to help it merged.
                     </br>
                     </br>
-                      The PR corresponded is <a href="https://github.com/MovingBlocks/Terasology/pull/3016">here</a>. And you can see those game play stats show as below:
+                      There are several <a href="https://github.com/MovingBlocks/Terasology/issues/3011">issues about telemetry</a>left. I fixed most of the issues and some bugs such as telemetry not re initialize in a new game.
+                    </br>
+                    </br>
+                      In week 8, together with mentors, we discussed about a user identification functionality. To better understand those stats from telemetry, we thought it would be better to identify the user. We thought including a code which indentify the user in each metric but this code should not have personal information. In final, we chosed a SHA2 hashed string of the MAC address as the user id. One of these commits: <a href="https://github.com/MovingBlocks/Terasology/pull/3016/commits/430c4b5dfe88c6edcc56cd01d10e1accb2ea519b">430c4b5</a>.
 
-                      <img src="img/telemetry/blockDestroyed.png"/>
-                      <img src="img/telemetry/gameplay.png"/>
                     </p>
-                    <!-- end of week 7 -->
+                    <!-- end of week 8 -->
 
 
                     <h2 class="section-heading">Phrase 3</h2>
+
+                    <!-- start of week9 -->
+                    <h3>Week 9 (25/July ~ 31/July)</h3>
+                    <p>
+                      In week 9, I started with some improvements in telemetry code in Terasology: <a href="https://github.com/MovingBlocks/Terasology/pull/3048">PR #3048</a>.
+                    </br>
+                    </br>
+                      I did also some improvements in <a href="https://github.com/GabrielXia/telemetry">telemtry server</a>. One of the improvment was to set all string fields in Elasticsearch default to `no analyzed`. By default, the Elasticseach analyze all the string fields. For example, in the dashborad, "Intel HD Graphics 400" will be seperated to "Intel", "HD", "Graphics", "400". It was not very useful for us and it got in the way when we wanted some courbes about the comparision about different string fields. On changing Elasticsearch to `string no analyzed`, we could finally get some nice graphes. You can see this commit here: <a href="https://github.com/GabrielXia/telemetry/commit/ac2ce75b0145cf10f8389e483e260c4c6a630b67">9f4e8b4</a>. Below is a sample circle graph about the graphic card info from different users. "headless" means the user is running a handless server and "Disabled Field" means the user doesn't want this field to be sent.
+                      <img src="img/telemetry/circle.png"/>
+
+                    </p>
+                    <!-- end of week 9 -->
+
+                    <!-- start of week10 -->
+                    <h3>Week 10 (1/August ~ 7/August)</h3>
+                    <p>
+                      In the week 10, I planed to implement a light feedback reporting functionality based on snowplow tracker. After discussing with mentors, we thought that might not be a good idea because the feedback maybe includes some personal information and it might not be good to show feedbacks in <a href="utility.terasology.org:5601">kibana</a>.
+                    </br>
+                    </br>
+                      So I turned to implent "more users' options". The telemetry code had allowed the user to choose wheter send metrics to the server. We wanted some thing suppler: the user could choose which telemetry field to be sent but not the others. What's more, it could be possible for the user to choose which group of metrics to be sent but not the others. For example, the user could choose the game play metric to be sent but not the system info metric. This functionality is implemented by adding check box to each telemetry field in `Metrics Menu`, adding several listeners to these checkboxs and binding these check boxes with map which recorded wether the field was allowed to be sent. The code is here: <a href="https://github.com/MovingBlocks/Terasology/pull/3056">PR #3056</a>.
+                    </p>
+                    <!-- end of week 10 -->
+
+                    <!-- start of week11 -->
+                    <h3>Week 11 (8/August ~ 14/August)</h3>
+                    <p>
+                      In the week 11, I implemented a telemetry API which the other modules could use to track events. Telemetry in other modules should behave the same as telemetry in engine. For example, all the metrics should be added in `Metrics` instance in context and all the fields should be shown in `Metrics Menu`.
+                    </br>
+                    </br>
+                      To acheive this API, I had to rewrite `Metrics.class` to drive open-closed principle: A new metric instance should be added to it automatically. At first I was thinking about forcing all metrics to be added to `Metrics.class` when constructing. Mentors taught me a more beautiful way: using `annotion` to fetch all Metric Classes and use `Constructor.newInstance()` to auto instantiate these classes.
+                    </br>
+                    </br>
+                      The telemetry API was acheved by marking telemetry class `@API`, adding external module to `whitelist` and changing some methods to `AccessController.doPrivileged()`. I learned pretty much about java sandbox model. The new PR and test module are here: <a href="https://github.com/MovingBlocks/Terasology/pull/3075">PR#3075</a> and <a href="https://github.com/GabrielXia/TelemetryApiTest">TelemetryApuTest</a>.
+                    </p>
+                    <!-- end of week 11 -->
+
+                    <!-- start of week12 -->
+                    <h3>Week 12 (15/August ~ 21/August)</h3>
+                    <p>
+                      The week 10, I planed to implement a light feedback reporting functionality based on snowplow tracker. After discussing with mentors, we thought that might not be a good idea because the feedback maybe includes some personal information and it might not be good to show feedbacks in <a href="utility.terasology.org:5601">kibana</a>.
+                    </br>
+                    </br>
+                      So I turned to implent "more users' options". The telemetry code had allowed the user to choose wheter send metrics to the server. We wanted some thing suppler: the user could choose which telemetry field to be sent but not the others. What's more, it could be possible for the user to choose which group of metrics to be sent but not the others. For example, the user could choose the game play metric to be sent but not the system info metric. This functionality is implemented by adding check box to each telemetry field in `Metrics Menu`, adding several listeners to these checkboxs and binding these check boxes with map which recorded wether the field was allowed to be sent. The code is here: <a href="https://github.com/MovingBlocks/Terasology/pull/3056">PR #3056</a>.
+                    </p>
+                    <!-- end of week 12 -->
 
                     <h2 class="section-heading">Project Review</h2>
 
