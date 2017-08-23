@@ -17,6 +17,9 @@
     <!-- Theme CSS -->
     <link href="css/clean-blog.min.css" rel="stylesheet">
 
+    <!-- my style-->
+    <link href="css/myStyle.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -313,19 +316,9 @@
                       To acheive this API, I had to rewrite `Metrics.class` to drive open-closed principle: A new metric instance should be added to it automatically. At first I was thinking about forcing all metrics to be added to `Metrics.class` when constructing. Mentors taught me a more beautiful way: using `annotion` to fetch all Metric Classes and use `Constructor.newInstance()` to auto instantiate these classes.
                     </br>
                     </br>
-                      The telemetry API was acheved by marking telemetry class `@API`, adding external module to `whitelist` and changing some methods to `AccessController.doPrivileged()`. I learned pretty much about java sandbox model. The new PR and test module are here: <a href="https://github.com/MovingBlocks/Terasology/pull/3075">PR#3075</a> and <a href="https://github.com/GabrielXia/TelemetryApiTest">TelemetryApuTest</a>.
+                      The telemetry API was acheved by marking telemetry class `@API`, adding external module to `whitelist` and changing some methods to `AccessController.doPrivileged()`. I learned pretty much about java sandbox model. The new PR and test module are here: <a href="https://github.com/MovingBlocks/Terasology/pull/3075">PR#3075</a> and <a href="https://github.com/GabrielXia/TelemetryApiTest">TelemetryApiTest</a>.
                     </p>
                     <!-- end of week 11 -->
-
-                    <!-- start of week12 -->
-                    <h3>Week 12 (15/August ~ 21/August)</h3>
-                    <p>
-                      The week 10, I planed to implement a light feedback reporting functionality based on snowplow tracker. After discussing with mentors, we thought that might not be a good idea because the feedback maybe includes some personal information and it might not be good to show feedbacks in <a href="utility.terasology.org:5601">kibana</a>.
-                    </br>
-                    </br>
-                      So I turned to implent "more users' options". The telemetry code had allowed the user to choose wheter send metrics to the server. We wanted some thing suppler: the user could choose which telemetry field to be sent but not the others. What's more, it could be possible for the user to choose which group of metrics to be sent but not the others. For example, the user could choose the game play metric to be sent but not the system info metric. This functionality is implemented by adding check box to each telemetry field in `Metrics Menu`, adding several listeners to these checkboxs and binding these check boxes with map which recorded wether the field was allowed to be sent. The code is here: <a href="https://github.com/MovingBlocks/Terasology/pull/3056">PR #3056</a>.
-                    </p>
-                    <!-- end of week 12 -->
 
                     <h2 class="section-heading">Project Review</h2>
 
