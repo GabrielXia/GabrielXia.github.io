@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<style media="screen">
+table .table{
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+  width: 100%;
+}
+</style>
+
 <head>
 
     <meta charset="utf-8">
@@ -111,7 +120,18 @@
                     <br />
                     <br />
 
-                    
+                    Terasology has a CrashReporter that allows users to upload log files and report bugs on the forum or using Github issues.
+                    However the CrashReporter requires a little bit manual work. An automatic error reporting functionality might help developpers to find more potential problems.
+                    What's more, getting some information such as video card info from users might be helpful to improve player's experience.
+                    In March 2017, I wrote a <a href="https://docs.google.com/document/d/1N4zkThE7VG_LSR67XH8H7UkvMKrTSSAf7eoj1Esz66c/edit?usp=sharing">proposal</a> for the new telemetry system in Terasology and luckily the project was selected.
+
+                    <br />
+                    <br />
+
+                    Telemetry in Terasology has mainly two goals: to gather user's game play information and to gather user's error logs with system details.
+                    Throughout the summer, I worked on both client end (Terasology codebase) and <a href="https://github.com/GabrielXia/telemetry">server end (the telemetry server)</a> to achive them.
+                    Also I treated user's permission with caution: users are well informed and they have supple choices to enable/disable telemetry.
+
                   </p>
                     <p> You can get more information about this project by reading:
                       <ul>
@@ -121,13 +141,234 @@
                       </ul>
                     </p>
 
-                    <h2 class="section-heading">Project Overview</h2>
+                    <h2 class="section-heading">Contribution Summary</h2>
 
-                    <h2 class="section-heading">Bonding Period</h2>
+                    <h3>Pull Requests in Terasology codebase:</h3>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Pull Request</th>
+                          <th>Content</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><a href="https://github.com/MovingBlocks/Terasology/pull/2968">#2968</a></td>
+                          <td>
+
+                            <li>
+                              Telemetry initialization (package dependency, etc)
+                            </li> 
+                            <li>
+                              Telemetry user's authorisation (user's <code>Config</code>, popup asking for authorisation)
+                            </li>
+                            <li>
+                              <code>Metrics Menu</code> showing all the telemetry field names and values
+                            </li>
+                            <li>
+                              System metric and Module metric
+                            </li>
+                            <li>
+                              <code>Logstash</code> appender enriching error logs and sending them to the server
+                            </li>
+                            <li>
+                              Turning on/off the metric or error reporting in <code>Metrics Menu</code>
+                            </li>
+                          </td>
+                        </tr>
+
+                          <tr>
+                            <td>
+                              <a href="https://github.com/MovingBlocks/Terasology/pull/3016">#3016</a>
+                            </td>
+
+                            <td>
+                              <li>
+                                Game play metrics including block destroyed, block replaced, creature killed,
+                                game configuration and distance traveled, etc.
+                              </li>
+                              <li>
+                                Using hashed MAC adress to indentifier users
+                              </li>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              <a href="https://github.com/MovingBlocks/Terasology/pull/3048">#3048</a>
+                            </td>
+                            <td>
+                              <li>
+                                Fix some issues
+                              </li>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              <a href="https://github.com/MovingBlocks/Terasology/pull/3056">#3056</a>
+                            </td>
+                            <td>
+                              <li>
+                                Users have more options on which fields they want to send and which not
+                              </li>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              <a href="https://github.com/MovingBlocks/Terasology/pull/3075">#3075</a>
+                            </td>
+                            <td>
+                              <li>
+                                Expose the <code>Telemetry API</code> that other modules could use
+                              </li>
+                            </td>
+                          </tr>
+                      </tbody>
+                    </table>
+
+                    <h3>Pull Request in snowplow</h3>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Pull Request</th>
+                          <th>Content</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <a href="https://github.com/snowplow/snowplow-java-tracker/pull/189">#189</a>
+                          </td>
+                          <td>
+                            <li>
+                              Fix snowplow java tracker not existing issue
+                            </li>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <h3>Important commit in telemetry</h3>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Commit</th>
+                          <th>Content</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <tr>
+                          <td>
+                            <a href="https://github.com/GabrielXia/telemetry/commit/58be80df9c9019241f90b573d856ea8b66c85077">58be80d</a>
+                          </td>
+                          <td>
+                            <li>
+                              Dockerize telemetry
+                            </li>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <a href="https://github.com/GabrielXia/telemetry/commit/eb926461166cf389b0c5b6dde12ad49cd92d47e3">eb92636</a>
+                          </td>
+                          <td>
+                            <li>
+                              Uncouple telemetry docker
+                            </li>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <a href="https://github.com/GabrielXia/telemetry/commit/b4b887de5bccf914efc36fac9d5077d6bbff78bf">b4b887d</a>
+                            <br />
+                            <a href="https://github.com/GabrielXia/telemetry/commit/97e8d01e7bc24db9f7e76c441b5d236dbae739ee">97e8d01</a>
+                          </td>
+                          <td>
+                            <li>
+                              Develop Snowplow schema registry system <code>iglu</code> in telemetry docker
+                            </li>
+                          </td>
+                        </tr>
+                        <td>
+                          <a href="https://github.com/GabrielXia/telemetry/commit/ae54c05d11826aae0b9573720dd2210425e5fe57">ae54c05</a>
+                        </td>
+                        <td>
+                          <li>
+                            Fix elasticsearch docker break issue
+                          </li>
+                        </td>
+                        <tr>
+
+                        </tr>
+                        <tr>
+                          <td>
+                            <a href="https://github.com/GabrielXia/telemetry/commit/c9aafdc7d1fc73fad5df744143bfa061de4b2002">c9aafdc</a>
+                          </td>
+                          <td>
+                            <li>
+                              Fix client tracker does't receive feedback issue
+                            </li>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <a href="https://github.com/GabrielXia/telemetry/commit/85e54b0f001f6f8dcea89fdfa3f04bda70a50819">85e54b0</a>
+                          </td>
+                          <td>
+                            <li>
+                              Store logs into docker container
+                            </li>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <a href="https://github.com/GabrielXia/telemetry/commit/e9840f66b74343294a32871327a85376df975609">e9840f6</a>
+                          </td>
+                          <td>
+                            <li>
+                              Fix snowplow tools do not start normally issue
+                            </li>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <a href="https://github.com/GabrielXia/telemetry/commit/ba5448783bede204f7dab694c6a911acd4edd3f7">ba54487</a>
+                          </td>
+                          <td>
+                            <li>
+                              Add Logstash json parser to Logstash docker
+                            </li>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <a href="https://github.com/GabrielXia/telemetry/commit/ac2ce75b0145cf10f8389e483e260c4c6a630b67">ac2ce75</a>
+                          </td>
+                          <td>
+                            <li>
+                              Change string in ELK to <code>no_analyzed</code> so that developer can cluster metrics easily in Kibana
+                            </li>
+                          </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+
+
+                    <h2 class="section-heading">Future Plans and Ideas</h2>
 
 
 
-                    <h2 class="section-heading">Phrase 1</h2>
+                    <h2 class="section-heading">Acknowledgements</h2>
 
 
                 </div>
