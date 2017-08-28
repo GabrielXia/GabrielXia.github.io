@@ -105,9 +105,9 @@ table .table{
                   <p>
                     <b>Organization:</b> MovingBlocks
                     <br />
-                    <b>Project:</b> Metric-Gathering System for Terasology
+                    <b>Project:</b> Telemetry in Terasology
                     <br />
-                    <b>Product:</b> Terasology, telemetry server
+                    <b>Product:</b> Terasology, <a href="https://github.com/GabrielXia/telemetry">telemetry server</a>
                   </p>
                   <figure>
                       <img src='img/gsoc2017Final/creepyGooey.jpg' alt='missing' />
@@ -115,29 +115,37 @@ table .table{
                   </figure>
 
                   <p>
-                    <a href="http://terasology.org/">Terasology</a> is an open-source sandbox videogame, originally created as a Minecraft-inspired tech demo, it has grown into a powerful engine for voxel-based gameplay. The project is currently focused on architecture and extensibility, but as of early 2016 has released a first Alpha version to be a baseline engine for creating content and building gameplay.
+                    <a href="http://terasology.org/">Terasology</a> is an open-source sandbox videogame,
+                    originally created as a Minecraft-inspired tech demo, it has grown into a powerful engine for voxel-based gameplay.
+                    The project is currently focused on architecture and extensibility,
+                    but as of early 2016 has released a first Alpha version to be a baseline engine for creating content and building gameplay.
 
                     <br />
                     <br />
 
-                    Terasology has a CrashReporter that allows users to upload log files and report bugs on the forum or using Github issues.
-                    However the CrashReporter requires a little bit manual work. An automatic error reporting functionality might help developpers to find more potential problems.
-                    What's more, getting some information such as video card info from users might be helpful to improve player's experience.
-                    In March 2017, I wrote a <a href="https://docs.google.com/document/d/1N4zkThE7VG_LSR67XH8H7UkvMKrTSSAf7eoj1Esz66c/edit?usp=sharing">proposal</a> for the new telemetry system in Terasology and luckily the project was selected.
+                    Terasology has a CrashReporter that allows users to upload log files and report bugs on the forum or Github issues.
+                    However the CrashReporter requires a little bit manual work.
+                    An automatic error reporting functionality might help developpers find more potential problems.
+                    What's more, getting information such as video card info from users might be helpful to improve player's experience.
+                    In March 2017, I wrote a <a href="https://docs.google.com/document/d/1N4zkThE7VG_LSR67XH8H7UkvMKrTSSAf7eoj1Esz66c/edit?usp=sharing">proposal</a>
+                    for a telemetry system in Terasology and luckily the project was selected.
 
                     <br />
                     <br />
 
-                    Telemetry in Terasology has mainly two goals: to gather user's game play information and to gather user's error logs with system details.
-                    Throughout the summer, I worked on both client end (Terasology codebase) and <a href="https://github.com/GabrielXia/telemetry">server end (the telemetry server)</a> to achive them.
-                    Also I treated user's permission with caution: users are well informed and they have supple choices to enable/disable telemetry.
+                    Telemetry in Terasology has mainly two goals:
+                    to gather user's game play information and to collect user's error logs with system details.
+                    Throughout the summer, I worked on both client end (Terasology codebase) and <a href="https://github.com/GabrielXia/telemetry">server end (the telemetry server)</a> to achieve them.
+                    Also I treated user's permission with caution: users should be well informed and they have supple choices to enable/disable telemetry.
 
                   </p>
-                    <p> You can get more information about this project by reading:
+                    <p> You can get more information about this project by:
                       <ul>
                         <li><a href="https://docs.google.com/document/d/1N4zkThE7VG_LSR67XH8H7UkvMKrTSSAf7eoj1Esz66c/edit?usp=sharing"> the proposal </a></li>
-                        <li><a href=""> the thread in forum (todo)</a></li>
-                        <li><a href="https://github.com/orgs/MovingBlocks/projects/2"> GitHub project borad</a></li>
+                        <li><a href="https://github.com/orgs/MovingBlocks/projects/2">GitHub project borad</a></li>
+                        <li>
+                          <a href="https://gabrielxia.github.io/telemetry.html">the develop blog during GSoC</a>
+                        </li>
                       </ul>
                     </p>
 
@@ -172,7 +180,7 @@ table .table{
                               <code>Logstash</code> appender enriching error logs and sending them to the server
                             </li>
                             <li>
-                              Turning on/off the metric or error reporting in <code>Metrics Menu</code>
+                              Turning on/off telemetry in <code>Metrics Menu</code>
                             </li>
                           </td>
                         </tr>
@@ -184,11 +192,11 @@ table .table{
 
                             <td>
                               <li>
-                                Game play metrics including block destroyed, block replaced, creature killed,
+                                Game play metrics including blocks destroyed, blocks replaced, creatures killed,
                                 game configuration and distance traveled, etc.
                               </li>
                               <li>
-                                Using hashed MAC adress to indentifier users
+                                Use hashed MAC address to identify users
                               </li>
                             </td>
                           </tr>
@@ -210,7 +218,7 @@ table .table{
                             </td>
                             <td>
                               <li>
-                                Users have more options on which fields they want to send and which not
+                                Users have more options on which fields they want to send
                               </li>
                             </td>
                           </tr>
@@ -243,7 +251,7 @@ table .table{
                           </td>
                           <td>
                             <li>
-                              Fix snowplow java tracker not existing issue
+                              Fix <code>snowplow java tracker doesn't exit</code> issue
                             </li>
                           </td>
                         </tr>
@@ -299,7 +307,7 @@ table .table{
                         </td>
                         <td>
                           <li>
-                            Fix elasticsearch docker break issue
+                            Fix <code>elasticsearch docker break</code> issue
                           </li>
                         </td>
                         <tr>
@@ -311,7 +319,7 @@ table .table{
                           </td>
                           <td>
                             <li>
-                              Fix client tracker does't receive feedback issue
+                              Fix <code>server does't return feedback</code> issue
                             </li>
                           </td>
                         </tr>
@@ -322,7 +330,7 @@ table .table{
                           </td>
                           <td>
                             <li>
-                              Store logs into docker container
+                              Store logs in docker container
                             </li>
                           </td>
                         </tr>
@@ -333,7 +341,7 @@ table .table{
                           </td>
                           <td>
                             <li>
-                              Fix snowplow tools do not start normally issue
+                              Fix <code>snowplow tools do not start normally</code> issue
                             </li>
                           </td>
                         </tr>
@@ -369,13 +377,13 @@ table .table{
                     Telemetry has just taken the first step in Terasology, there are still quite a few things to do:
 
                     <li>
-                      Set Telemetry authorization options in <a href="https://github.com/MovingBlocks/TerasologyLauncher">TerasologyLauncher</a>
+                      Put Telemetry authorization options in <a href="https://github.com/MovingBlocks/TerasologyLauncher">TerasologyLauncher</a>
                     </li>
 
                     <li>
                       Continue to develop server <a href="https://github.com/GabrielXia/telemetry">telemetry</a>:
                         <ul>
-                          Store/parse logs from <a href="https://github.com/GabrielXia/CrashReporter">CR</a>, make it easy for research
+                          Store/parse logs from <a href="https://github.com/GabrielXia/CrashReporter">CR</a> in telemetry, make it easy to search
                         </ul>
                         <ul>
                           Mark data better for archiving/deletion.
@@ -405,7 +413,7 @@ table .table{
                     <a href="https://github.com/msteiger">Martin Steiger</a>, <a href="https://github.com/skaldarnar">Tobias Nett</a>!
                     Thanks also to <a href="https://github.com/Cervator">Rasmus Praestholm</a> and <a href="https://github.com/qwc">Marcel</a> and the community MovingBlocks!
                     Thanks so much for reviewing the code, giving suggestions, giving ideas, etc.
-                    I won't finish the project without your help!!
+                    I can't do it without your help!!
 
                     <br />
                     <br />
