@@ -115,18 +115,19 @@ table .table{
                   </figure>
 
                   <p>
-                    <a href="http://terasology.org/">Terasology</a> is an open-source sandbox video game,
-                    originally created as a Minecraft-inspired tech demo, it has grown into a powerful engine for voxel-based gameplay.
-                    The project is currently focused on architecture and extensibility,
+                    <a href="http://terasology.org/">Terasology</a> is an open-source sandbox video game.
+                    Originally created as a Minecraft-inspired tech demo, it has grown into a powerful engine for voxel-based gameplay.
+                    The project was previously focused on architecture and extensibility,
                     but as of early 2016 has released a first Alpha version to be a baseline engine for creating content and building gameplay.
 
                     <br />
                     <br />
 
-                    Terasology has a CrashReporter that allows users to upload log files and report bugs on the forum or Github issues.
-                    However the CrashReporter requires a little bit manual work.
-                    An automatic error reporting functionality might help developers find more potential problems.
-                    What's more, getting information such as video card info from users might be helpful to improve player's experience.
+                    Terasology has a CrashReporter utility that allows users to upload log files and report bugs on the forum
+                    or via Github issues.
+                    However, the CrashReporter requires a little bit of manual work.
+                    Automatic error reporting functionality might help developers find more potential problems.
+                    What's more, getting information such as hardware details and system information from users might be helpful to improve player's experience.
                     In March 2017, I wrote a <a href="https://docs.google.com/document/d/1N4zkThE7VG_LSR67XH8H7UkvMKrTSSAf7eoj1Esz66c/edit?usp=sharing">proposal</a>
                     for a telemetry system in Terasology and luckily the project was selected.
 
@@ -134,17 +135,20 @@ table .table{
                     <br />
 
                     Telemetry in Terasology has mainly two goals:
-                    to gather user's game play information and to collect user's error logs with system details.
-                    Throughout the summer, I worked on both client end (Terasology codebase) and <a href="https://github.com/GabrielXia/telemetry">server end (the telemetry server)</a> to achieve them.
-                    Also I treated user's permission with caution: users should be well informed and they have supple choices to enable/disable telemetry.
+                    to gather players' game-play information and to collect their error logs with system details.
+                    Throughout the summer, I worked on both clientside (Terasology codebase)
+                    and <a href="https://github.com/GabrielXia/telemetry">server-end (the telemetry server)</a> functionality to achieve them.
+                    Player consent was a top priority: players are well informed about the telemetry system and
+                    they can choose to enable/disablt it,
+                    as well as view data being sent to the the Terasology project, at any time.
 
                   </p>
-                    <p> You can get more information about this project by:
+                    <p> You can get more information about this project by visiting:
                       <ul>
                         <li><a href="https://docs.google.com/document/d/1N4zkThE7VG_LSR67XH8H7UkvMKrTSSAf7eoj1Esz66c/edit?usp=sharing"> the proposal </a></li>
-                        <li><a href="https://github.com/orgs/MovingBlocks/projects/2">GitHub project borad</a></li>
+                        <li><a href="https://github.com/orgs/MovingBlocks/projects/2">GitHub project board</a></li>
                         <li>
-                          <a href="https://gabrielxia.github.io/telemetry.html">the develop blog during GSoC</a>
+                          <a href="https://gabrielxia.github.io/telemetry.html">the development blog, updated throughout GSoC</a>
                         </li>
                       </ul>
                     </p>
@@ -165,7 +169,7 @@ table .table{
                           <td>
 
                             <li>
-                              Telemetry initialization (package dependency, etc)
+                              Telemetry system initialization (package dependencies, etc)
                             </li> 
                             <li>
                               Telemetry user's authorisation (user's <code>Config</code>, popup asking for authorisation)
@@ -192,11 +196,11 @@ table .table{
 
                             <td>
                               <li>
-                                Game play metrics including blocks destroyed, blocks replaced, creatures killed,
+                                Gameplay metrics including blocks destroyed, blocks replaced, creatures killed,
                                 game configuration and distance traveled, etc.
                               </li>
                               <li>
-                                Use hashed MAC address to identify users
+                                The usage of hashed MAC addresses to identify users
                               </li>
                             </td>
                           </tr>
@@ -207,7 +211,7 @@ table .table{
                             </td>
                             <td>
                               <li>
-                                Fix some issues
+                                Various bugfixes
                               </li>
                             </td>
                           </tr>
@@ -218,7 +222,7 @@ table .table{
                             </td>
                             <td>
                               <li>
-                                Users have more options on which fields they want to send
+                                Allowing users to send specific fields only
                               </li>
                             </td>
                           </tr>
@@ -229,7 +233,7 @@ table .table{
                             </td>
                             <td>
                               <li>
-                                Expose the <code>Telemetry API</code> that other modules could use
+                                A <code>Telemetry API</code> that other modules could use
                               </li>
                             </td>
                           </tr>
@@ -401,6 +405,17 @@ table .table{
                             </li>
                           </td>
                         </tr>
+
+                        <tr>
+                            <td>
+                              <a href="https://github.com/GabrielXia/TelemetryApiTest/wiki">Tutorial module</a>
+                            </td>
+                            <td>
+                              <li>
+                                A tutrial module to use telemetry in Terasology
+                              </li>
+                            </td>
+                        </tr>
                       </tbody>
                     </table>
 
@@ -410,29 +425,36 @@ table .table{
                     Telemetry has just taken the first step in Terasology, there are still quite a few things to do:
 
                     <li>
-                      Put Telemetry authorization options in <a href="https://github.com/MovingBlocks/TerasologyLauncher">TerasologyLauncher</a>
+                      Add Telemetry authorization options to <a href="https://github.com/MovingBlocks/TerasologyLauncher">TerasologyLauncher</a>
                     </li>
 
                     <li>
-                      Continue to develop server <a href="https://github.com/GabrielXia/telemetry">telemetry</a>:
-                        <ul>
-                          Store/parse logs from <a href="https://github.com/GabrielXia/CrashReporter">CR</a> in telemetry, make it easy to search
-                        </ul>
-                        <ul>
-                          Mark data better for archiving/deletion.
-                        </ul>
+                      Continue to develop server <a href="https://github.com/GabrielXia/telemetry">telemetry</a>
                     </li>
 
                     <li>
-                      Telemetry in other MovingBlocks games such as <a href="https://github.com/MovingBlocks/DestinationSol">DestinationSol</a>
+                      Store/parse logs from <a href="https://github.com/GabrielXia/CrashReporter">CrashReporter</a> on the telemetry
+                      back-end, make them easy to search
                     </li>
 
                     <li>
-                      Complete documentations of the server as well as the telemetry API in <a href="https://github.com/GabrielXia/telemetry/wiki">telemetry/wiki</a> and the tutorial module in <a href="https://github.com/GabrielXia/TelemetryApiTest">TelemetryApiTest</a>
+                      Mark data that is pending archival/deletion.
+                    </li>
+
+
+                    <li>
+                      Add telemetry system to other MovingBlocks games such as <a href="https://github.com/MovingBlocks/DestinationSol">DestinationSol</a>
                     </li>
 
                     <li>
-                      Finish the follow-ups listed in <a href="https://github.com/orgs/MovingBlocks/projects/2">project dashborad</a>
+                      Complete documentation of the server as well as the telemetry API
+                      in <a href="https://github.com/GabrielXia/telemetry/wiki">telemetry/wiki</a> and
+                      the tutorial module in <a href="https://github.com/GabrielXia/TelemetryApiTest">TelemetryApiTest</a>
+                    </li>
+
+                    <li>
+                      Finish the follow-up issues listed in
+                      the <a href="https://github.com/orgs/MovingBlocks/projects/2">project dashboard</a>
                     </li>
 
                     <br />
